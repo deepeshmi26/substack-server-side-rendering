@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧩 Prodify — Chapter 1: Rendering Fundamentals
 
-## Getting Started
+This chapter introduces the **four core rendering strategies** in Next.js:  
+**CSR (Client-Side Rendering), SSR (Server-Side Rendering), SSG (Static Site Generation), and ISR (Incremental Static Regeneration).**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 What We Built
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🧱 Local API  
+- **Route:** `GET /api/time`  
+- Returns current local time (in ISO and formatted forms).  
+- Used by all pages as the shared data source.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📄 Rendering Demos  
+Each rendering strategy is demonstrated in its own page:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Rendering Type | Key Feature |
+|--------|----------------|-------------|
+| `/csr` | Client-Side Rendering | Data fetched in browser after hydration using `use client` |
+| `/ssr` | Server-Side Rendering | Rendered fresh on every request using `dynamic = force-dynamic` |
+| `/ssg` | Static Site Generation | Generated once at build time using `dynamic = force-static`;|
+| `/isr` | Incremental Static Regeneration | Regenerates every 30s (`revalidate = 30`) |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧩 What We Learned
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **CSR**
+- Uses `use client` directive.
+- Page loads first, then fetches data from `/api/time`.
+- HTML source is empty until React hydrates.
+- Great for highly interactive dashboards.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **SSR**
+- Uses `export const dynamic = 'force-dynamic'`.
+- Always rendered on the **server per request**.
+- Perfect for authenticated or real-time pages.
 
-## Deploy on Vercel
+### **SSG**
+- Generated once during `next build`.
+- SSG wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
+- Served as static HTML — instant load speed.
+- Ideal for marketing or content pages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **ISR**
+- Mix between SSG and SSR.
+- ISR wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
+- Generates static output but **revalidates** periodically.
+- Best for blogs or semi-dynamic pages.
