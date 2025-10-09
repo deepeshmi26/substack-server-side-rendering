@@ -20,7 +20,7 @@ export default function InstructionBlock({
       </div>
       {note && (
         <div className="p-2 bg-yellow-50 border-l-4 border-yellow-400 ">
-          <p className="text-xs text-gray-800">
+          <p className="text-sm text-gray-800">
             <strong>Concept:</strong> {note}
           </p>
         </div>

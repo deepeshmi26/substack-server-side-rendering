@@ -21,7 +21,8 @@ export default async function SSRPage() {
 
   const instructions = `
 This page is rendered on the server for every request.
-It fetches the current time from our local API and sends fully rendered HTML to the client.`;
+It fetches the current time from our local API and sends fully rendered HTML to the client.
+Notice that the initial HTML includes the time as the data is fetched at request time. The time will change for each request.`;
 
   const note =
     "'force-dynamic' tells Next.js to skip caching and render this page on the server for every request. " +

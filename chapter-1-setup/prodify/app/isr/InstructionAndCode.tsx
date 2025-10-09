@@ -23,11 +23,14 @@ export default async function ISRPage() {
 
   const instructions = `
 This page uses ISR. The page is cached and revalidated in the background
-every 30 seconds. Subsequent requests serve the cached page until it refreshes.`;
+every 30 seconds. Subsequent requests serve the cached page until it refreshes.
+Notice that the initial HTML includes the time as the data is fetched at build time. It will only change every 30 seconds.`;
+
+  const note = `export const revalidate = 30; is used to tell Next.js to regenerate the page every 30 seconds.`;
 
   return (
     <div className="flex flex-col gap-4">
-      <InstructionBlock instructions={instructions} />
+      <InstructionBlock instructions={instructions} note={note} />
       <CodeBlock code={code} />
     </div>
   );
