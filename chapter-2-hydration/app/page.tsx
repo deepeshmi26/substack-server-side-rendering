@@ -10,6 +10,7 @@ export default function Home() {
       <div className="flex gap-4 text-blue-500">
         <a href="/hydration-failure">Hydration failure</a>
         <a href="/hydration-fix">Hydration fix</a>
+        <a href="/hydration-process">Hydration process</a>
       </div>
 
       <div className="max-w-2xl w-full mt-6">
