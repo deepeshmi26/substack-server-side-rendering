@@ -1,50 +1,18 @@
-# 🧩 Prodify — Chapter 1: Rendering Fundamentals
+# Understanding Hydration in Next.js
 
-This chapter introduces the **four core rendering strategies** in Next.js:  
-**CSR (Client-Side Rendering), SSR (Server-Side Rendering), SSG (Static Site Generation), and ISR (Incremental Static Regeneration).**
+Hydration is the process that makes your website interactive after it loads. Let's break this down with a simple explanation:
 
----
+## What Happens During Hydration?
 
-## 🚀 What We Built
+1. First, Next.js sends HTML to the browser (like a static snapshot of your page)
+2. Then, JavaScript loads and "hydrates" this HTML by:
+   - Adding event listeners (like click handlers)
+   - Connecting your React components
+   - Making the page interactive
 
-### 🧱 Local API  
-- **Route:** `GET /api/time`  
-- Returns current local time (in ISO and formatted forms).  
-- Used by all pages as the shared data source.
+## Why is Hydration Important?
 
-### 📄 Rendering Demos  
-Each rendering strategy is demonstrated in its own page:
+- Users see content quickly (thanks to the initial HTML)
+- The page becomes interactive once JavaScript loads
+- Provides better performance than loading everything at once
 
-| Route | Rendering Type | Key Feature |
-|--------|----------------|-------------|
-| `/csr` | Client-Side Rendering | Data fetched in browser after hydration using `use client` |
-| `/ssr` | Server-Side Rendering | Rendered fresh on every request using `dynamic = force-dynamic` |
-| `/ssg` | Static Site Generation | Generated once at build time using `dynamic = force-static`;|
-| `/isr` | Incremental Static Regeneration | Regenerates every 30s (`revalidate = 30`) |
-
----
-
-## 🧩 What We Learned
-
-### **CSR**
-- Uses `use client` directive.
-- Page loads first, then fetches data from `/api/time`.
-- HTML source is empty until React hydrates.
-- Great for highly interactive dashboards.
-
-### **SSR**
-- Uses `export const dynamic = 'force-dynamic'`.
-- Always rendered on the **server per request**.
-- Perfect for authenticated or real-time pages.
-
-### **SSG**
-- Generated once during `next build`.
-- SSG wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
-- Served as static HTML — instant load speed.
-- Ideal for marketing or content pages.
-
-### **ISR**
-- Mix between SSG and SSR.
-- ISR wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
-- Generates static output but **revalidates** periodically.
-- Best for blogs or semi-dynamic pages.
