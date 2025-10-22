@@ -8,14 +8,15 @@ export default function InstructionAndCode() {
         <li>
           This page represents the root route (<strong>/app/page.tsx</strong>)
         </li>
-        <li>It is wrapped by the layout component.</li>
+        <li>It is wrapped by the layout component shown below.</li>
         <li>
           The layout component(having the links in the header) wraps this page
           and all nested pages inside it.
         </li>
         <li>
           When you click the links in the header, only the page content changes
-          - the layout stays the same and does not reload
+          - the layout stays the same and does not reload. A loading screen is
+          shown while the page is loading.
         </li>
       </ul>
     </>

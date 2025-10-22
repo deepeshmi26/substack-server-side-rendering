@@ -18,6 +18,9 @@ export default function RootLayout({
           <Link href="/">🏠 Home</Link>
           <Link href="/about">ℹ️ About</Link>
           <Link href="/products">🛍 Products</Link>
+          <Link href="/products/1">
+            🛍 Product 1 (Click to see loading screen)
+          </Link>
           <Link href="/error-test">🧪 Error Test</Link>
           <Link href="/not-found-test">🔍 404 Test</Link>
         </header>

@@ -23,7 +23,7 @@ export default function ErrorBlock({ children }: ErrorBlockProps) {
           </svg>
         </div>
         <div className="ml-3">
-          <p className="text-sm text-red-700">{children}</p>
+          <div className="text-sm text-red-700">{children}</div>
         </div>
       </div>
     </div>
