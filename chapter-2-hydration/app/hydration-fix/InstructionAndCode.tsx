@@ -49,7 +49,7 @@ export default function InstructionAndCode() {
   );
 
   const code = `
-/* Server (app/hydration-failure/page.tsx) */
+/* Server (app/hydration-fix/page.tsx) */
 import ClientDateFixed from "./ClientDateFixed";
 
 export default function HydrationMismatchPage() {
