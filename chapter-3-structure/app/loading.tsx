@@ -19,6 +19,32 @@ export default function Loading() {
         </li>
         <li>This demonstrates Next.js streaming and progressive loading</li>
       </ul>
+
+      <div className="mt-6">
+        <h4 className="font-semibold text-green-700 mb-3">
+          ✅ When loading.tsx is visible
+        </h4>
+        <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+          <li>Initial server render (SSR / direct URL access)</li>
+          <li>
+            Async component suspends during render (await inside server
+            component)
+          </li>
+          <li>Client navigation without prefetch</li>
+          <li>ISR revalidation or dynamic SSR fetching</li>
+        </ul>
+      </div>
+
+      <div className="mt-4">
+        <h4 className="font-semibold text-red-700 mb-3">
+          🚫 When it's not visible
+        </h4>
+        <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+          <li>Navigating via a &lt;Link&gt; that was prefetched</li>
+          <li>Re-visiting an already rendered route</li>
+          <li>Pure client-side updates that don't suspend</li>
+        </ul>
+      </div>
     </>
   );
 

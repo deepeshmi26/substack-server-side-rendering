@@ -13,7 +13,11 @@ Each detail page demonstrates SSR with streaming using \`await\` delay.
       <h2 className="text-lg font-semibold">Product List</h2>
       <ul className="list-disc ml-6 space-y-1">
         <li>
-          <Link href="/products/1" className="text-blue-500 hover:underline">
+          <Link
+            href="/products/1"
+            className="text-blue-500 hover:underline"
+            prefetch={false}
+          >
             Product 1
           </Link>
         </li>

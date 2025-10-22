@@ -5,8 +5,9 @@ import WarningBlock from "@/components/WarningBlock";
 export default async function ProductDetail({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   await new Promise((r) => setTimeout(r, 7000)); // simulate SSR delay
 
   const info = `
@@ -17,7 +18,7 @@ While waiting, Next.js automatically shows the **loading.tsx** component.
 
   return (
     <div className="bg-black p-4 space-y-4 text-white">
-      <h3 className="font-semibold text-lg">Product #{params.id}</h3>
+      <h3 className="font-semibold text-lg">Product #{id}</h3>
       <p>This page is server-rendered after a 7s delay.</p>
       <WarningBlock>
         <p>⚠️ To see the loading page in action, please reload this page.</p>

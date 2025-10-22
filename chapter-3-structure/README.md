@@ -1,50 +1,69 @@
-# 🧩 Prodify — Chapter 1: Rendering Fundamentals
+# 🧭 Chapter 3 – Routing System (Next.js App Router)
 
-This chapter introduces the **four core rendering strategies** in Next.js:  
-**CSR (Client-Side Rendering), SSR (Server-Side Rendering), SSG (Static Site Generation), and ISR (Incremental Static Regeneration).**
-
----
-
-## 🚀 What We Built
-
-### 🧱 Local API  
-- **Route:** `GET /api/time`  
-- Returns current local time (in ISO and formatted forms).  
-- Used by all pages as the shared data source.
-
-### 📄 Rendering Demos  
-Each rendering strategy is demonstrated in its own page:
-
-| Route | Rendering Type | Key Feature |
-|--------|----------------|-------------|
-| `/csr` | Client-Side Rendering | Data fetched in browser after hydration using `use client` |
-| `/ssr` | Server-Side Rendering | Rendered fresh on every request using `dynamic = force-dynamic` |
-| `/ssg` | Static Site Generation | Generated once at build time using `dynamic = force-static`;|
-| `/isr` | Incremental Static Regeneration | Regenerates every 30s (`revalidate = 30`) |
+## 🎯 Goal
+Learn how Next.js App Router maps the folder structure to routes, how layouts work, and how built-in files (`loading.tsx`, `error.tsx`, `not-found.tsx`) behave during both SSR and CSR.
 
 ---
 
-## 🧩 What We Learned
+## 🧩 What We Built
+```bash
+app/
+ ├─ layout.tsx              → Global layout (header, nav)
+ ├─ page.tsx                → Home page
+ ├─ about/page.tsx          → Static route
+ ├─ products/
+ │   ├─ layout.tsx          → Nested layout (persists between pages)
+ │   ├─ page.tsx            → Product list
+ │   ├─ [id]/page.tsx       → Dynamic route (async SSR)
+ │   ├─ loading.tsx         → Route-specific loading UI
+ │   ├─ error.tsx           → Route-specific error boundary
+ │   └─ not-found.tsx       → Route-specific 404
+ ├─ loading.tsx             → Global loading
+ ├─ error.tsx               → Global error
+ └─ not-found.tsx           → Global 404
+```
+## 🧠 FAQs (Quick Answers)
 
-### **CSR**
-- Uses `use client` directive.
-- Page loads first, then fetches data from `/api/time`.
-- HTML source is empty until React hydrates.
-- Great for highly interactive dashboards.
+### Q1. When is `loading.tsx` visible?
+- ✅ When the route or data is still loading (SSR or non-prefetched CSR).
+- ❌ Not visible if the route was prefetched or already cached.
 
-### **SSR**
-- Uses `export const dynamic = 'force-dynamic'`.
-- Always rendered on the **server per request**.
-- Perfect for authenticated or real-time pages.
+---
+### Q2. When to use `Suspense` vs `loading.tsx`?
 
-### **SSG**
-- Generated once during `next build`.
-- SSG wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
-- Served as static HTML — instant load speed.
-- Ideal for marketing or content pages.
+- Use **`loading.tsx`** → when an entire **page or route** is loading (handled automatically by Next.js).  
+- Use **`<Suspense>`** → when a **part of the page** (like a section or component) is loading inside an already rendered page.
 
-### **ISR**
-- Mix between SSG and SSR.
-- ISR wont work in dev server as next js cache is overriden during dev mode. Thus, fetch happens again and again in dev mode. Make sure to use build version.
-- Generates static output but **revalidates** periodically.
-- Best for blogs or semi-dynamic pages.
+---
+### Q3. What happens if I add `error.tsx` or `not-found.tsx` in nested folders?
+- They render **inside their parent layouts**.
+- Only the affected route’s content changes — outer layouts remain visible.
+
+---
+
+### Q4. Do these boundaries run only during SSR?
+- No. All (`loading.tsx`, `error.tsx`, `not-found.tsx`) work in both SSR and CSR.
+- React uses them as boundaries in both render contexts.
+
+---
+
+### Q5. Why doesn’t my `loading.tsx` appear during navigation?
+- Because Next.js `<Link>` **prefetches** routes by default.
+- Use `prefetch={false}` to disable prefetching and see the loading UI.
+
+---
+
+### Q6. Are nested `loading`, `error`, or `not-found` scoped locally?
+- Yes. Each applies only to its own folder and child routes.
+- A parent’s fallback is used only if the child doesn’t define one.
+
+---
+
+### Q7. Do `error.tsx` and `not-found.tsx` render inside parent layouts?
+- ✅ Yes. They appear **within** the nearest parent layout.
+- The higher-level layouts (like header, navigation) stay visible.
+
+---
+
+### Q9. Is `error.tsx` required to have `"use client"`?
+- ✅ Yes. It must include `"use client"` because it acts as a React error boundary and needs to run on the client.
