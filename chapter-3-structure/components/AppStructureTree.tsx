@@ -20,6 +20,7 @@ const folderStructure: FolderItem[] = [
         isFolder: true,
         children: [
           { name: "page.tsx", description: "Products list /products" },
+          { name: "layout.tsx", description: "Products layout" },
           {
             name: "[id]/",
             isFolder: true,
