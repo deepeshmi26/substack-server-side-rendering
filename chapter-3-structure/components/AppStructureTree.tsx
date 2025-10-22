@@ -32,6 +32,20 @@ const folderStructure: FolderItem[] = [
           },
         ],
       },
+      {
+        name: "error-test/",
+        isFolder: true,
+        children: [
+          { name: "page.tsx", description: "Error testing /error-test" },
+        ],
+      },
+      {
+        name: "not-found-test/",
+        isFolder: true,
+        children: [
+          { name: "page.tsx", description: "404 testing /not-found-test" },
+        ],
+      },
     ],
   },
 ];
