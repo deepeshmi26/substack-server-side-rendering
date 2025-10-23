@@ -1,3 +1,5 @@
+import InstructionBlock from "@/components/InstructionBlock";
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-8 p-6">
@@ -112,24 +114,27 @@ export default function Home() {
       </div>
 
       {/* Combined Caching Section */}
-      <div className="w-full max-w-4xl mt-8 p-6 bg-gray-100 rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Using Both Together
-        </h2>
-        <p className="text-center text-gray-700 leading-relaxed">
-          Both caching mechanisms can be used together! Think of it like this:
-          <br />
-          <span className="font-semibold text-lg">
-            UI → Server → Another Server
-          </span>
-          <br />
-          <span className="text-sm">
-            The UI can cache the rendered HTML (Caching Renders), while the
-            server can cache the API responses it makes to other servers
-            (Caching Data).
-          </span>
-        </p>
-      </div>
+      <InstructionBlock
+        instructions={
+          <div className="space-y-4">
+            <p>
+              Both caching mechanisms can be used together! Think of it like
+              this:
+            </p>
+
+            <div className="font-mono text-center py-2">
+              <strong>Client → Next.js Server → Another Server</strong>
+            </div>
+
+            <p>
+              The Next.js server can cache the rendered HTML (
+              <span className="font-semibold">Caching Renders</span>), while the
+              Next.js server can also cache the API responses it makes to other
+              servers (<span className="font-semibold">Caching Data</span>).
+            </p>
+          </div>
+        }
+      />
     </main>
   );
 }
