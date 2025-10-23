@@ -8,10 +8,10 @@ export default function Home() {
       <p className="text-gray-500">Rendering Fundamentals Playground</p>
 
       <div className="flex gap-4 text-blue-500">
-        <a href="/csr">CSR</a>
-        <a href="/ssr">SSR</a>
-        <a href="/ssg">SSG</a>
-        <a href="/isr">ISR</a>
+        <a href="/csr">CSR (Client-Side Rendering)</a>
+        <a href="/ssr">SSR (Server-Side Rendering)</a>
+        <a href="/ssg">SSG (Static Site Generation)</a>
+        <a href="/isr">ISR (Incremental Static Regeneration)</a>
       </div>
 
       <div className="max-w-2xl w-full mt-6">
