@@ -59,11 +59,12 @@ app/
 
 ---
 
-### Q7. Do `error.tsx` and `not-found.tsx` render inside parent layouts?
-- ✅ Yes. They appear **within** the nearest parent layout.
-- The higher-level layouts (like header, navigation) stay visible.
+### Q7. Do `error.tsx`, `loading.tsx` and `not-found.tsx` render inside parent layouts?
+- Yes. They all renders **inside its parent layouts**. Not its own layout.
 
----
+### Q8.What happens if `error.tsx`, `loading.tsx`, or `not-found.tsx` is missing in a child segment?
+- Missing boundaries inherit behavior from the nearest parent; if no parent has one, Next.js uses its global fallback.
+
 
 ### Q9. Is `error.tsx` required to have `"use client"`?
-- ✅ Yes. It must include `"use client"` because it acts as a React error boundary and needs to run on the client.
+- Yes. It must include `"use client"` because it acts as a React error boundary and needs to run on the client.

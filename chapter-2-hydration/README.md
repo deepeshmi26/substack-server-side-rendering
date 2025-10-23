@@ -1,4 +1,4 @@
-# Understanding Hydration in Next.js
+# Chapter-2 Understanding Hydration in Next.js
 
 Hydration is the process that makes your website interactive after it loads. Let's break this down with a simple explanation:
 
