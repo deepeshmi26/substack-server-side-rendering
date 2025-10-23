@@ -1,8 +1,6 @@
 import InstructionBlock from "@/components/InstructionBlock";
 import CodeBlock from "@/components/CodeBlock";
 
-export const dynamic = "force-static";
-
 export default async function StaticFetchPage() {
   const res = await fetch("http://localhost:3000/api/products", {
     cache: "force-cache",
@@ -15,7 +13,6 @@ Subsequent requests serve the cached HTML until a new build occurs (SSG behavior
 `;
 
   const code = `
-export const dynamic = 'force-static';
 const res = await fetch('/api/products', { cache: 'force-cache' });
 `;
 

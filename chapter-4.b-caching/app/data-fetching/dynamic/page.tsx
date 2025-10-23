@@ -1,8 +1,6 @@
 import InstructionBlock from "@/components/InstructionBlock";
 import CodeBlock from "@/components/CodeBlock";
 
-export const dynamic = "force-dynamic";
-
 export default async function DynamicFetchPage() {
   const res = await fetch("http://localhost:3000/api/products", {
     cache: "no-store",
@@ -15,7 +13,6 @@ The page is dynamically rendered on the server (SSR behavior).
 `;
 
   const code = `
-export const dynamic = 'force-dynamic';
 const res = await fetch('/api/products', { cache: 'no-store' });
 `;
 

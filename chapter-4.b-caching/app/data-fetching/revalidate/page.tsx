@@ -1,8 +1,6 @@
 import InstructionBlock from "@/components/InstructionBlock";
 import CodeBlock from "@/components/CodeBlock";
 
-export const revalidate = 10;
-
 export default async function RevalidateFetchPage() {
   const res = await fetch("http://localhost:3000/api/products", {
     next: { revalidate: 10 },
@@ -11,15 +9,15 @@ export default async function RevalidateFetchPage() {
 
   const info = (
     <>
-      This page uses <strong>revalidate: 10</strong>, meaning it regenerates in the background every 10 seconds.
-      The first request after 10s will trigger regeneration (ISR behavior).
-
-      <br /><br />
-      Flow: ↓
-      1. User vists ↓
+      This page uses <strong>revalidate: 10</strong>, meaning it regenerates in
+      the background every 10 seconds. The first request after 10s will trigger
+      regeneration (ISR behavior).
+      <br />
+      <br />
+      Flow: ↓ 1. User vists ↓
       <br />
       1. Serve cached html instantly ↓
-      <br /> 
+      <br />
       2. After 10s, next request triggers revalidation ↓
       <br />
       3. Revalidation happens in background ↓
@@ -29,7 +27,6 @@ export default async function RevalidateFetchPage() {
   );
 
   const code = `
-export const revalidate = 10;
 const res = await fetch('/api/products', { next: { revalidate: 10 } });
 `;
 
