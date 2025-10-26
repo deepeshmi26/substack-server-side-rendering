@@ -36,7 +36,11 @@ export default function HydrationProcessPage() {
     <>
       <h3 className="font-bold text-lg mb-4">What happens in hydration?</h3>
       <ol className="list-decimal pl-6 space-y-2">
-        <li>Request is made to the server for the page</li>
+        <li>
+          Open Network tab (F12) and reload the page with "All" filter selected
+          to observe the process
+        </li>
+        <li>The first request made to get an html</li>
         <li>
           Server quickly generates and sends static HTML with all components
           (like buttons, text etc.) but without any interactivity(i.e. no
@@ -65,7 +69,7 @@ export default function HydrationProcessPage() {
           Browser renders this static HTML immediately - you can see the page
           but clicking buttons does nothing as there are no onClick handlers.
         </li>
-        <li>Browser starts downloading the JavaScript bundle in parallel</li>
+        <li>A second request is made to download the JavaScript bundle</li>
         <li>
           Once JavaScript loads, React starts the hydration process:
           <ul className="list-disc pl-6 mt-2">
